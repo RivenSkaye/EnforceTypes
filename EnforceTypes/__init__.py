@@ -7,9 +7,9 @@ still fail and error on type problems. The easiest way to resolve this is
 checking the types of all input arguments, which quickly becomes repetitive
 and does not aid in readability of the code base.
 
-This module provides a simple decorator that handles checking of all input
-arguments upon being called, and works for both classes (wrapping __init__)
-and it works for singular functions (wrapping any calls made to them).
+This module provides simple decorators that handle checking of all input
+arguments upon being called, for both classes (wrapping __init__)
+and singular functions (wrapping any calls made to them).
 
 .. code-block:: python
 

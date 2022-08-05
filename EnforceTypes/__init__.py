@@ -1,5 +1,5 @@
 """
-Simple decorator for enforcing types during runtime.
+Simple decorators for enforcing types during runtime.
 
 The idea behind this is to reduce time spent developing and using packages
 that are computationally intensive and take a long time to run, which might

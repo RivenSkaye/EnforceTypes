@@ -1,3 +1,28 @@
+"""
+Simple decorator for enforcing types during runtime.
+
+The idea behind this is to reduce time spent developing and using packages
+that are computationally intensive and take a long time to run, which might
+still fail and error on type problems. The easiest way to resolve this is
+checking the types of all input arguments, which quickly becomes repetitive
+and does not aid in readability of the code base.
+
+This module provides a simple decorator that handles checking of all input
+arguments upon being called, and works for both classes (wrapping __init__)
+and it works for singular functions (wrapping any calls made to them).
+
+.. code-block:: python
+
+   from EnforceTypes import enforce_types
+
+
+   @enforce_types
+   def add(a: int, b: int) -> None
+       print(f"Adding {a} to {b} equals {a + b}")
+
+   add(2, 2)  # prints "Adding 2 to 2 equals 4"
+   add("a", 2)  # This causes the decorator to raise a TypeError!
+"""
 from typing import Any, Type, TypeVar, get_args
 
 __all__ = [

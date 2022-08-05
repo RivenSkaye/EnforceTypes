@@ -38,8 +38,8 @@ and singular functions (wrapping any calls made to them).
     A(1, 1).calc  # prints 2
     A(1, "b").calc  # This causes a TypeError too, before calling `A.calc`!
 """
-from typing import Any, Type, TypeVar, get_args, Callable, Dict
 from functools import wraps
+from typing import Any, Type, TypeVar, get_args, Callable, Dict
 
 __all__ = [
     "classtypes", "functypes"
@@ -54,13 +54,11 @@ class _MISSING:
 
 MISSING = _MISSING()
 T = TypeVar("T")
-classtype = type(_MISSING)
 
 
 def classtypes(cls: Type[T]) -> Type[T]:
     """For use as class decorator. Enforces types in ``init``"""
 
-    @wraps(cls)
     def newinit(self: Type[T], *args: Any, **kwargs: Any) -> None:
         keywords: Dict[str, Any] = self.dict.get("__init__").__annotations__  # type: ignore
         oldinit: Callable = self.__dict__.get("__init__")  # type: ignore
@@ -91,8 +89,9 @@ def functypes(func: Callable) -> Callable:
     """For use as a function decorator, enforces types in ``__call__``"""
 
     @wraps(func)
-    def newcall(func: Callable, *args: Any, **kwargs: Any) -> T:
+    def newcall(*args: Any, **kwargs: Any) -> T:
         keywords = func.__annotations__
+        print(keywords)
         arglist = list(args)
         for kw in keywords:
             argval = arglist.pop(0) if len(arglist) > 0 else ...
@@ -111,5 +110,4 @@ def functypes(func: Callable) -> Callable:
                                 f"{type(kw_val).__name__}`, but only accepts values of "
                                 f"type `{argtype.__name__}`")
         return func(*arglist, **kwargs)
-
     return newcall

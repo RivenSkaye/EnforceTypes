@@ -11,7 +11,7 @@ maintainers = [
     {name = "RivenSkaye", email = "Riven@tae.moe"}
 ]
 license = {file = "LICENSE"}
-readme = {file = "README.rst"}
+readme = "README.rst"
 classifiers = [
     "License :: OSI Approved :: MIT License"
 ]
@@ -25,4 +25,4 @@ dependencies = [
 Home = "https://github.com/RivenSkaye/EnforceTypes"
 Documentation = "https://github.com/RivenSkaye/EnforceTypes/blob/master/README.rst"
 Source = "https://github.com/RivenSkaye/EnforceTypes"
-Bug Tracker = "https://github.com/RivenSkaye/EnforceTypes/issues"
+"Bug Tracker" = "https://github.com/RivenSkaye/EnforceTypes/issues"

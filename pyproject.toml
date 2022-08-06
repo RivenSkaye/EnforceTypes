@@ -4,10 +4,25 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "EnforceTypes"
-authors = [{name = "RivenSkaye", email = "Riven@tae.moe"}]
+authors = [
+    {name = "RivenSkaye", email = "Riven@tae.moe"}
+]
+maintainers = [
+    {name = "RivenSkaye", email = "Riven@tae.moe"}
+]
 license = {file = "LICENSE"}
-classifiers = ["License :: OSI Approved :: MIT License"]
+readme = {file = "README.rst"}
+classifiers = [
+    "License :: OSI Approved :: MIT License"
+]
 dynamic = ["version", "description"]
+requires-python = ">=3.8,<3.11"
+dependencies = [
+    "vapoursynth >=59"
+]
 
 [project.urls]
 Home = "https://github.com/RivenSkaye/EnforceTypes"
+Documentation = "https://github.com/RivenSkaye/EnforceTypes/blob/master/README.rst"
+Source = "https://github.com/RivenSkaye/EnforceTypes"
+Bug Tracker = "https://github.com/RivenSkaye/EnforceTypes/issues"

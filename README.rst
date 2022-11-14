@@ -19,6 +19,10 @@ and the provided argument's runtime type.
 There are separate decorators for functions and classes, please do not use them
 the wrong way around.
 
+Due to some very iffy results and instability in the way decorators work when combined,
+please try using decorators in a different order *before* submitting bug reports.
+I can't help that, it's a limitation with the way Python itself handles it.
+
 .. code-block:: python
 
    from EnforceTypes import classtypes, functypes, methtypes
@@ -42,8 +46,8 @@ the wrong way around.
        printadd(self):
            print(f"Adding {self.a} to {self.b} equals {self.add()}")
 
-       @methtypes
        @classmethod
+       @methtypes
        def add_values(cls, *, a: int = 1, b: int = 1) -> int:
            obj = cls(a, b)
            return obj.add()

@@ -25,7 +25,7 @@ the wrong way around.
 
 
    @functypes
-   def add(a: int, b: int) -> None
+   def add(a: int, b: int) -> None:
        print(f"Adding {a} to {b} equals {a + b}")
 
 

@@ -5,7 +5,7 @@
 [project]
     authors         = [{ name = "RivenSkaye", email = "Riven@tae.moe" }]
     classifiers     = ["License :: OSI Approved :: MIT License"]
-    dependencies    = ["typing-extensions ~=4"]
+    dependencies    = ["typing-extensions >=4.0.0, <5"]
     dynamic         = ["description", "version"]
     license         = { file = "LICENSE" }
     maintainers     = [{ name = "RivenSkaye", email = "Riven@tae.moe" }]

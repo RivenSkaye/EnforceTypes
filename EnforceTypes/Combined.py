@@ -1,9 +1,8 @@
 from dataclasses import dataclass as dc
-from typing import Type, cast
+from typing import Type
 
-from .types import F, T
-from .Classes import classtypes, methtypes
-from.Functions import functypes
+from .Classes import classtypes
+from .types import T
 
 __all__ = [
     "dataclass"
@@ -12,7 +11,3 @@ __all__ = [
 
 def dataclass(cls: Type[T]) -> Type[T]:
     return classtypes(dc(cls))
-
-
-def staticmeth(meth: F) -> F:
-    return cast(F, staticmethod(functypes(meth)))

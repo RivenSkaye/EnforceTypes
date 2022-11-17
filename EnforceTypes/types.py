@@ -1,5 +1,5 @@
 from typing import TypeVar, Callable
-from typing_extensions import Concatenate, ParamSpec
+from typing_extensions import ParamSpec
 
 __all__ = [
     "F", "MISSING", "T"

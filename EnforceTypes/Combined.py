@@ -1,17 +1,13 @@
 from dataclasses import dataclass as dc
-from typing import Type, cast
+from typing import Type
 
-from .types import F, T
-from .Classes import classtypes, methtypes
+from .types import T
+from .Classes import classtypes
 
 __all__ = [
-    "dataclass", "classmeth"
+    "dataclass"
 ]
 
 
 def dataclass(cls: Type[T]) -> Type[T]:
     return classtypes(dc(cls))
-
-
-def classmeth(meth: F) -> F:
-    return methtypes(cast(F, classmethod(meth).__func__))

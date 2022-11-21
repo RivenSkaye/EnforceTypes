@@ -1,7 +1,8 @@
 from functools import wraps
 from inspect import _ParameterKind as PK
 from inspect import signature
-from typing import Any, cast, get_args
+from typing import Any, cast
+from typing_extensions import get_args
 
 from .types import MISSING, F
 

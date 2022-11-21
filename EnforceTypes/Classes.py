@@ -10,7 +10,8 @@ from functools import wraps
 from inspect import _ParameterKind as PK
 from inspect import signature
 from types import FunctionType
-from typing import Any, Callable, Type, cast, get_args
+from typing import Any, Callable, Type, cast
+from typing_extensions import get_args
 
 from .types import MISSING, F, T
 

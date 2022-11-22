@@ -4,7 +4,7 @@ from .Classes import classtypes, methtypes
 from .Combined import dataclass
 from .Functions import functypes
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 __all__ = [
     "classtypes", "dataclass", "functypes", "methtypes"
 ]

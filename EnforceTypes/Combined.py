@@ -9,11 +9,11 @@ __all__ = [
 ]
 
 
-def _dataclass(cls: Type[T]) -> Type[T]:
+def _dataclass(cls: Type[T], **kwargs: bool) -> Type[T]:
     """
     Creates a type-safe dataclass, used just like @dataclasses.dataclass.
     """
-    return classtypes(dc(cls))
+    return classtypes(dc(cls, **kwargs))
 
 
 dataclass = cast_to_func(_dataclass, dc)

@@ -4,7 +4,7 @@
    :alt: PyPI - License
 .. |Version| image:: https://img.shields.io/pypi/v/enforcetypes
    :alt: PyPI
-.. |Downloads| image:: https://static.pepy.tech/personalized-badge/enforcetypes?period=total&units=none&left_color=black&right_color=green&left_text=Downloads
+.. |Downloads| image:: https://static.pepy.tech/personalized-badge/enforcetypes?period=total&units=none&left_color=gray&right_color=green&left_text=Downloads
    :target: https://pepy.tech/project/enforcetypes
    :alt: PePy stats
 

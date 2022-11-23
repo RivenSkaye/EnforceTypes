@@ -43,7 +43,7 @@ I can't help that, it's a limitation with the way Python itself handles it.
            self.b = b
 
        @property
-       printadd(self):
+       def printadd(self):
            print(f"Adding {self.a} to {self.b} equals {self.add()}")
 
        @classmethod

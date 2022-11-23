@@ -23,6 +23,12 @@ Due to some very iffy results and instability in the way decorators work when co
 please try using decorators in a different order *before* submitting bug reports.
 I can't help that, it's a limitation with the way Python itself handles it.
 
+I'm working on combining common use cases (such as ``@dataclass`` which has already
+been implemented) and would gladly take suggestions!
+I've also been putting some effort into splitting the package, so auto-imports and
+``__all__`` might be somewhat affected until v0.1.0, which I'll release once I'm
+confident that it's mostly stable (except for the API)
+
 .. code-block:: python
 
    from EnforceTypes import classtypes, functypes, methtypes
@@ -59,7 +65,7 @@ I can't help that, it's a limitation with the way Python itself handles it.
 
    Add(1, 1).printadd  # prints 2
    a = Add(1, "a")  # TypeError raised because of a `str` instead of an `int`.
-   Add(1, "b").printadd  # This causes a TypeError too, before calling `A.calc`!
+   Add(1, "b").printadd  # This causes a TypeError too, before instantiating an `Add` object!
    Add.add_values(b=5)  # returns 6
    a = Add(10, 20)
    a.add()  # returns 30

@@ -1,5 +1,4 @@
 from typing import TypeVar, Callable, cast
-from typing_extensions import ParamSpec
 
 __all__ = [
     "F", "MISSING", "T"
@@ -13,7 +12,6 @@ class _MISSING:
 MISSING = _MISSING()
 F = TypeVar("F", bound=Callable)
 F2 = TypeVar("F2", bound=Callable)
-P = ParamSpec("P")
 R = TypeVar("R")
 T = TypeVar("T")
 

@@ -5,6 +5,7 @@ from typing import Any, cast
 from typing_extensions import get_args
 
 from .types import MISSING, F
+from .utils import resolve_types
 
 
 __all__ = [
@@ -37,9 +38,11 @@ def functypes(func: F) -> F:
                         raise SyntaxError(f"{kw} is a keyword-only argument, but was given as "
                                           f"positional argument! ({func.__name__})")
                     kwargs[kw] = kw_val
-            argtype = keywords[kw].annotation
-            argtuple = get_args(argtype)
-            if not isinstance(kw_val, argtype) and not isinstance(kw_val, argtuple):
+            argtype = resolve_types(keywords[kw].annotation)
+            argtuple = tuple(resolve_types(_t) for _t in get_args(argtype))
+            typecheck = isinstance(kw_val, argtype)
+            tuplecheck = True if len(argtuple) == 0 else isinstance(kw_val, argtuple)
+            if not typecheck or not tuplecheck:
                 raise TypeError(f"Argument {kw} was passed a value of type `"
                                 f"{type(kw_val).__name__}`, but only accepts values of "
                                 f"type `{argtype.__name__}` "

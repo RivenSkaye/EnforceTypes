@@ -14,6 +14,7 @@ from typing import Any, Callable, Type, cast
 from typing_extensions import get_args
 
 from .types import MISSING, F, T
+from .utils import resolve_types
 
 
 def classtypes(cls: Type[T]) -> Type[T]:
@@ -43,9 +44,11 @@ def classtypes(cls: Type[T]) -> Type[T]:
                         raise SyntaxError(f"{kw} is a keyword-only argument, but was given as "
                                           f"positional argument! ({cls.__name__})")
                     kwargs[kw] = kw_val
-            argtype = keywords[kw].annotation
-            argtuple = get_args(argtype)
-            if not isinstance(kw_val, argtype) and not isinstance(kw_val, argtuple):
+            argtype = resolve_types(keywords[kw].annotation)
+            argtuple = tuple(resolve_types(_t) for _t in get_args(argtype))
+            typecheck = isinstance(kw_val, argtype)
+            tuplecheck = True if len(argtuple) == 0 else isinstance(kw_val, argtuple)
+            if not typecheck or not tuplecheck:
                 raise TypeError(f"Argument {kw} was passed a value of type `"
                                 f"{type(kw_val).__name__}`, but only accepts values of "
                                 f"type `{argtype.__name__}` "
@@ -86,9 +89,11 @@ def methtypes(meth: F) -> F:
                         raise SyntaxError(f"{kw} is a keyword-only argument, but was given as "
                                           f"positional argument! ({meth.__name__})")
                     kwargs[kw] = kw_val
-            argtype = keywords[kw].annotation
-            argtuple = get_args(argtype)
-            if not isinstance(kw_val, argtype) and not isinstance(kw_val, argtuple):
+            argtype = resolve_types(keywords[kw].annotation)
+            argtuple = tuple(resolve_types(_t) for _t in get_args(argtype))
+            typecheck = isinstance(kw_val, argtype)
+            tuplecheck = True if len(argtuple) == 0 else isinstance(kw_val, argtuple)
+            if not typecheck or not tuplecheck:
                 raise TypeError(f"Argument {kw} was passed a value of type `"
                                 f"{type(kw_val).__name__}`, but only accepts values of "
                                 f"type `{argtype.__name__}` "

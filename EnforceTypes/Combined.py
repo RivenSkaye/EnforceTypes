@@ -15,7 +15,8 @@ def _dataclass(cls: Optional[Type[T]] = None, **kwargs: bool) -> Callable[[Type[
     Creates a type-safe dataclass, used just like @dataclasses.dataclass.
     """
     if cls is not None:
-        return classtypes(dc(cls, **kwargs))  # type: ignore
+        cls = cast(Type, cls)
+        return classtypes(dc(cls, **kwargs))
     else:
         return cast(Callable, partial(_dataclass, **kwargs))
 

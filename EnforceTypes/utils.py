@@ -5,7 +5,9 @@ import typing_inspect as ti  # type: ignore
 def resolve_types(tp: Type) -> Type:
     if tp is Any or ti.is_generic_type(tp):
         return object
-    if ti.is_union_type(tp) or ti.is_new_type(tp) or ti.is_classvar(tp):
+    if ti.is_union_type(tp):
+        return ti.get_args(tp)
+    if ti.is_new_type(tp) or ti.is_classvar(tp):
         return tp
     elif ti.is_literal_type(tp):
         return str

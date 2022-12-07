@@ -1,10 +1,13 @@
-from typing import Any, Type
+from typing import Any, Tuple, Type, Union
+
 import typing_inspect as ti  # type: ignore
 
 
-def resolve_types(tp: Type) -> Type:
+def resolve_types(tp: Type) -> Union[Tuple, Type]:
     if tp is Any or ti.is_generic_type(tp):
         return object
+    if ti.is_optional_type(tp):
+        return ti.get_args(tp)
     if ti.is_union_type(tp):
         return ti.get_args(tp)
     if ti.is_new_type(tp) or ti.is_classvar(tp):

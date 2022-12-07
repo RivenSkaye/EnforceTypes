@@ -43,14 +43,14 @@ def functypes(func: F) -> F:
             typecheck = isinstance(kw_val, argtype)
             tuplecheck = True if len(argtuple) == 0 else isinstance(kw_val, argtuple)
             if not typecheck or not tuplecheck:
-                argnames = ", "
+                argnames = "`, `"
                 if isinstance(argtype, Iterable):
                     argnames = argnames.join([a.__name__ for a in argtype])
                 else:
                     argnames = argtype.__name__
-                raise TypeError(f"Argument {kw} was passed a value of type `"
+                raise TypeError(f"Argument `{kw}` was passed a value of type `"
                                 f"{type(kw_val).__name__}`, but only accepts values of "
-                                f"type(s) `{argnames}` "
+                                f"type(s) [`{argnames.replace('NoneType', 'None')}`] "
                                 f"({func.__name__})")
         return func(*arglist, **kwargs)
 

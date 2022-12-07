@@ -1,7 +1,7 @@
 from functools import wraps
 from inspect import _ParameterKind as PK
 from inspect import signature
-from typing import Any, cast
+from typing import Any, Iterable, cast
 from typing_extensions import get_args
 
 from .types import MISSING, F
@@ -43,9 +43,14 @@ def functypes(func: F) -> F:
             typecheck = isinstance(kw_val, argtype)
             tuplecheck = True if len(argtuple) == 0 else isinstance(kw_val, argtuple)
             if not typecheck or not tuplecheck:
+                argnames = ", "
+                if isinstance(argtype, Iterable):
+                    argnames = argnames.join([a.__name__ for a in argtype])
+                else:
+                    argnames = argtype.__name__
                 raise TypeError(f"Argument {kw} was passed a value of type `"
                                 f"{type(kw_val).__name__}`, but only accepts values of "
-                                f"type `{argtype.__name__}` "
+                                f"type(s) `{argnames}` "
                                 f"({func.__name__})")
         return func(*arglist, **kwargs)
 

@@ -10,7 +10,7 @@ from functools import wraps
 from inspect import _ParameterKind as PK
 from inspect import signature
 from types import FunctionType
-from typing import Any, Callable, Type, cast
+from typing import Any, Callable, Iterable, Type, cast
 from typing_extensions import get_args
 
 from .types import MISSING, F, T
@@ -49,9 +49,14 @@ def classtypes(cls: Type[T]) -> Type[T]:
             typecheck = isinstance(kw_val, argtype)
             tuplecheck = True if len(argtuple) == 0 else isinstance(kw_val, argtuple)
             if not typecheck or not tuplecheck:
+                argnames = ", "
+                if isinstance(argtype, Iterable):
+                    argnames = argnames.join([a.__name__ for a in argtype])
+                else:
+                    argnames = argtype.__name__
                 raise TypeError(f"Argument {kw} was passed a value of type `"
                                 f"{type(kw_val).__name__}`, but only accepts values of "
-                                f"type `{argtype.__name__}` "
+                                f"type(s) `{argnames}` "
                                 f"({cls.__name__})")
         if is_obj:
             oldinit(self)
@@ -94,9 +99,14 @@ def methtypes(meth: F) -> F:
             typecheck = isinstance(kw_val, argtype)
             tuplecheck = True if len(argtuple) == 0 else isinstance(kw_val, argtuple)
             if not typecheck or not tuplecheck:
+                argnames = ", "
+                if isinstance(argtype, Iterable):
+                    argnames = argnames.join([a.__name__ for a in argtype])
+                else:
+                    argnames = argtype.__name__
                 raise TypeError(f"Argument {kw} was passed a value of type `"
                                 f"{type(kw_val).__name__}`, but only accepts values of "
-                                f"type `{argtype.__name__}` "
+                                f"type(s) `{argnames}` "
                                 f"({meth.__name__})")
         return meth(selfcls, *arglist, **kwargs)
 

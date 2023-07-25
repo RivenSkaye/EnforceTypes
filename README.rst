@@ -6,7 +6,7 @@
 .. |Version| image:: https://img.shields.io/pypi/v/enforcetypes
    :alt: PyPI
    :target: https://pypi.org/project/EnforceTypes/
-.. |Downloads| image:: https://static.pepy.tech/personalized-badge/enforcetypes?period=total&units=none&left_color=grey&right_color=green&left_text=Downloads
+.. |Downloads| image:: https://static.pepy.tech/personalized-badge/enforcetypes?period=total&units=abbreviation&left_color=grey&right_color=green&left_text=Downloads
    :target: https://pepy.tech/project/enforcetypes
    :alt: PePy stats
 
